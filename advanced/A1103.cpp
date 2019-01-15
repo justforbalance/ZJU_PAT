@@ -29,12 +29,13 @@ void init(){
 };
 
 void DFS(int index, int nowk, int now_sum, int nowdisum){
+    if(now_sum==k&&nowk==)
 
 };
 
 int main(void)
 {
     scanf("%d%d%d", &n, &k, &p);
-
+    
     
 }
