@@ -22,20 +22,55 @@ int power_p(int x){
 
 void init(){
     //int tmp;
-    for (int i = 0; power_p(i) < n;++i)
+    for (int i = 0; power_p(i) <= n;++i)
     {
         di_mi.push_back(power_p(i));
     }
 };
 
 void DFS(int index, int nowk, int now_sum, int nowdisum){
-    if(now_sum==k&&nowk==)
+    if(now_sum==n&&nowk==k)
+    {
+        if(nowdisum>maxdisum)
+        {
+            ans = temp;
+            maxdisum = nowdisum;
+        }
+        return;
+    }
+
+    if(now_sum>n||nowk>k)
+    {
+        return;
+    }
+
+    if(index>=1)
+    {
+        temp.push_back(index);
+        DFS(index, nowk + 1, now_sum + di_mi[index], nowdisum + index);
+        temp.pop_back();
+        DFS(index - 1, nowk, now_sum, nowdisum);
+    }
 
 };
 
 int main(void)
 {
     scanf("%d%d%d", &n, &k, &p);
-    
-    
+    init();
+    int len = di_mi.size();
+    DFS(len-1, 0, 0, 0);
+    if(maxdisum==-1)
+    {
+        printf("Impossible\n");
+    }
+    else
+    {
+        printf("%d = %d^%d", n, ans[0], p);
+        for (int i = 1; i < ans.size();++i)
+        {
+            printf(" + %d^%d", ans[i], p);
+        }
+    }
+    return 0;
 }
