@@ -33,58 +33,7 @@ int address(int a, int b, int c)
 
 int BFS(int i, int j, int k, int tmp_core_num)
 {
-	int pos = address(i, j, k);
-	if (pos != -1)//范围可BFS
-	{
-		if (flag[pos] == 1)//还没有搜索过
-		{
-			flag[pos] = 0;
-			if (core[pos] == 1)//此位为1，则搜索它的邻居
-			{
-                int tmp;
-				tmp=BFS(i, j, k + 1, tmp_core_num + 1);
-				tmp=BFS(i, j + 1, k, tmp_core_num + tmp);
-				tmp=BFS(i + 1, j, k, tmp_core_num + tmp);
-                if(tmp_core_num==0&&tmp>=t)
-                {
-                    core_num+=tmp;
-                }
-			}
-
-			if (core[pos] == 0)//此位为0，搜索下一个位置，不过tmp_core_num变为0；
-			{
-				if (k + 1 == n)
-				{
-					k = 0;
-					++j;
-					if (j == m)
-					{
-						j = 0;
-						++i;
-						if (i == l)
-						{
-							return 0;
-						}
-					}
-					BFS(i, j, k,0);
-				}
-				else
-				{
-					BFS(i, j, k + 1, 0);
-				}
-                return tmp_core_num;
-			}
-		}
-		else//已经搜索过
-		{
-			return tmp_core_num;
-		}
-	}
-	else//不在BFS范围内
-	{
-		return tmp_core_num;
-	}
-
+	
 }
 
 int main(void)
