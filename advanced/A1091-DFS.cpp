@@ -28,9 +28,9 @@ int BFS(int i, int j, int k)
 	{
 		return 0;
 	}
-    flag[address(i, j, k)] = 0;
 	else
 	{
+		flag[address(i, j, k)] = 0;
 		if (core[address(i, j, k)] == 1)
 		{
 			++this_num;
@@ -59,7 +59,7 @@ int BFS(int i, int j, int k)
 				}
 			}
 			 pos = address(i, j+1, k);
-			if (address(i, j + 1, k) >= 0)
+			if (pos >= 0)
 			{
 				if (flag[pos] == 1)
 				{
@@ -71,15 +71,15 @@ int BFS(int i, int j, int k)
 			{
 				if (flag[pos] == 1)
 				{
-					this_num += BFS(i-1, j, k - 1);
+					this_num += BFS(i-1, j, k);
 				}
 			}
 			 pos = address(i+1, j, k);
-			if (address(i + 1, j, k) >= 0)
+			if (pos >= 0)
 			{
 				if (flag[pos] == 1)
 				{
-					this_num += BFS(i + 1, j, k - 1);
+					this_num += BFS(i + 1, j, k);
 				}
 			}
 		}
