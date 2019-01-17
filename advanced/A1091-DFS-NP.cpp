@@ -3,6 +3,8 @@
 #include<vector>
 #include<algorithm>
 
+//NP means not perfect
+
 using namespace std;
 
 vector<int> core;

@@ -32,116 +32,147 @@ int address(int a, int b, int c)
 
 int BFS(Node tmpnode)
 {
-	int i=tmpnode.x;
-	int j=tmpnode.y;
-	int k=tmpnode.z;
+	int i = tmpnode.x;
+	int j = tmpnode.y;
+	int k = tmpnode.z;
 
 	queue<Node> tmp_que;
 
-	int pos=address(i,j,k);
-	flag[pos]=0;
-	if(core[pos]==0)
+	int pos = address(i, j, k);
+	flag[pos] = 0;
+	if (core[pos] == 0)
 	{
 		return 0;
 	}
-	int num=0;
+	int num = 0;
 
 	tmp_que.push(tmpnode);
-	while(tmp_que.size()!=0)
+	flag[pos] = 0;
+	while (!tmp_que.empty())
 	{
-		Node node2=tmp_que.front();
+		Node node2 = tmp_que.front();
 		tmp_que.pop();
-		i=node2.x;
-		j=node2.y;
-		k=node2.z;
+		i = node2.x;
+		j = node2.y;
+		k = node2.z;
 
-		int pos=address(i,j,k);
-		flag[pos]=0;
-		if(core[pos]==1)
+		int pos = address(i, j, k);
+		flag[pos] = 0;
+		if (core[pos] == 1)
 		{
 			++num;
 			//邻居入队
-			pos=address(i,j,k-1);
-			if(pos>=0)
+			pos = address(i, j, k - 1);
+			if (pos >= 0)
 			{
-				if(flag[pos]==1)
+				if (flag[pos] == 1 && core[pos] == 1)
 				{
 					Node node1;
 
-					node1.x=i;
-					node1.y=j;
-					node1.z=k-1;
+					node1.x = i;
+					node1.y = j;
+					node1.z = k - 1;
 					tmp_que.push(node1);
+					flag[pos] = 0;
+				}
+				else
+				{
+					flag[pos] = 0;
 				}
 			}
 
-			pos=address(i,j,k+1);
-			if(pos>=0)
+			pos = address(i, j, k + 1);
+			if (pos >= 0)
 			{
-				if(flag[pos]==1)
+				if (flag[pos] == 1 && core[pos] == 1)
 				{
 					Node node1;
-					
-					node1.x=i;
-					node1.y=j;
-					node1.z=k+1;
+
+					node1.x = i;
+					node1.y = j;
+					node1.z = k + 1;
 					tmp_que.push(node1);
+					flag[pos] = 0;
+				}
+				else
+				{
+					flag[pos] = 0;
 				}
 			}
 
-			pos=address(i,j-1,k);
-			if(pos>=0)
+			pos = address(i, j - 1, k);
+			if (pos >= 0)
 			{
-				if(flag[pos]==1)
+				if (flag[pos] == 1 && core[pos] == 1)
 				{
 					Node node1;
-					
-					node1.x=i;
-					node1.y=j-1;
-					node1.z=k;
+
+					node1.x = i;
+					node1.y = j - 1;
+					node1.z = k;
 					tmp_que.push(node1);
+					flag[pos] = 0;
+				}
+				else
+				{
+					flag[pos] = 0;
 				}
 			}
 
-			pos=address(i,j+1,k);
-			if(pos>=0)
+			pos = address(i, j + 1, k);
+			if (pos >= 0)
 			{
-				if(flag[pos]==1)
+				if (flag[pos] == 1 && core[pos] == 1)
 				{
 					Node node1;
-					
-					node1.x=i;
-					node1.y=j+1;
-					node1.z=k;
+
+					node1.x = i;
+					node1.y = j + 1;
+					node1.z = k;
 					tmp_que.push(node1);
+					flag[pos] = 0;
+				}
+				else
+				{
+					flag[pos] = 0;
 				}
 			}
 
-			pos=address(i-1,j,k);
-			if(pos>=0)
+			pos = address(i - 1, j, k);
+			if (pos >= 0)
 			{
-				if(flag[pos]==1)
+				if (flag[pos] == 1 && core[pos] == 1)
 				{
 					Node node1;
-					
-					node1.x=i-1;
-					node1.y=j;
-					node1.z=k;
+
+					node1.x = i - 1;
+					node1.y = j;
+					node1.z = k;
 					tmp_que.push(node1);
+					flag[pos] = 0;
+				}
+				else
+				{
+					flag[pos] = 0;
 				}
 			}
 
-			pos=address(i+1,j,k);
-			if(pos>=0)
+			pos = address(i + 1, j, k);
+			if (pos >= 0)
 			{
-				if(flag[pos]==1)
+				if (flag[pos] == 1 && core[pos] == 1)
 				{
 					Node node1;
-					
-					node1.x=i+1;
-					node1.y=j;
-					node1.z=k;
+
+					node1.x = i + 1;
+					node1.y = j;
+					node1.z = k;
 					tmp_que.push(node1);
+					flag[pos] = 0;
+				}
+				else
+				{
+					flag[pos] = 0;
 				}
 			}
 		}
@@ -177,17 +208,20 @@ int main(void)
 				int pos = address(i, j, k);
 				if (pos >= 0)
 				{
-					if (flag[pos] == 1)//为1且位置未被搜索
+					if (flag[pos] == 1 && core[pos] == 1)//为1且位置未被搜索
 					{
 						Node node1;
-						node1.x=i;
-						node1.y=j;
-						node1.z=k;
+						node1.x = i;
+						node1.y = j;
+						node1.z = k;
 						int temp = BFS(node1);
 						if (temp >= t)
 						{
 							core_num += temp;
-						}
+						} 
+					}
+					else {
+						flag[pos] = 0;
 					}
 				}
 			}
