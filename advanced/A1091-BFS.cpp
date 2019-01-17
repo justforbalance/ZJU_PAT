@@ -2,7 +2,7 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
-#include<queuq>
+#include<queue>
 
 using namespace std;
 
@@ -44,26 +44,110 @@ int BFS(Node tmpnode)
 	{
 		return 0;
 	}
+	int num=0;
 
-	tmp_que.push_back(tmpnode);
+	tmp_que.push(tmpnode);
 	while(tmp_que.size()!=0)
 	{
-		tmpnode=tmp_que.front();
+		Node node2=tmp_que.front();
 		tmp_que.pop();
-		i=tmpnode.x;
-		j=tmpnode.y;
-		k=tmpnode.z;
+		i=node2.x;
+		j=node2.y;
+		k=node2.z;
 
 		int pos=address(i,j,k);
-		if(pos>=0)
+		flag[pos]=0;
+		if(core[pos]==1)
 		{
-			if(flag[pos]==1)
+			++num;
+			//邻居入队
+			pos=address(i,j,k-1);
+			if(pos>=0)
 			{
-				tmp_que.push()
+				if(flag[pos]==1)
+				{
+					Node node1;
+
+					node1.x=i;
+					node1.y=j;
+					node1.z=k-1;
+					tmp_que.push(node1);
+				}
+			}
+
+			pos=address(i,j,k+1);
+			if(pos>=0)
+			{
+				if(flag[pos]==1)
+				{
+					Node node1;
+					
+					node1.x=i;
+					node1.y=j;
+					node1.z=k+1;
+					tmp_que.push(node1);
+				}
+			}
+
+			pos=address(i,j-1,k);
+			if(pos>=0)
+			{
+				if(flag[pos]==1)
+				{
+					Node node1;
+					
+					node1.x=i;
+					node1.y=j-1;
+					node1.z=k;
+					tmp_que.push(node1);
+				}
+			}
+
+			pos=address(i,j+1,k);
+			if(pos>=0)
+			{
+				if(flag[pos]==1)
+				{
+					Node node1;
+					
+					node1.x=i;
+					node1.y=j+1;
+					node1.z=k;
+					tmp_que.push(node1);
+				}
+			}
+
+			pos=address(i-1,j,k);
+			if(pos>=0)
+			{
+				if(flag[pos]==1)
+				{
+					Node node1;
+					
+					node1.x=i-1;
+					node1.y=j;
+					node1.z=k;
+					tmp_que.push(node1);
+				}
+			}
+
+			pos=address(i+1,j,k);
+			if(pos>=0)
+			{
+				if(flag[pos]==1)
+				{
+					Node node1;
+					
+					node1.x=i+1;
+					node1.y=j;
+					node1.z=k;
+					tmp_que.push(node1);
+				}
 			}
 		}
 
 	}
+	return num;
 }
 
 int main(void)
