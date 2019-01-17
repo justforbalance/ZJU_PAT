@@ -34,7 +34,7 @@ int BFS(int i, int j, int k)
 		if (core[address(i, j, k)] == 1)
 		{
 			++this_num;
-			int pos = address(i,j,k-1);
+			int pos = address(i, j, k - 1);
 			if (pos >= 0)
 			{
 				if (flag[pos] == 1)
@@ -42,42 +42,42 @@ int BFS(int i, int j, int k)
 					this_num += BFS(i, j, k - 1);
 				}
 			}
-			 pos = address(i, j, k + 1);
+			pos = address(i, j, k + 1);
 			if (pos >= 0)
 			{
-				if (flag[pos] == 1)
+				if (flag[pos] == 1&&core[pos]==1)
 				{
 					this_num += BFS(i, j, k + 1);
 				}
 			}
-			 pos = address(i, j-1, k);
+			pos = address(i, j - 1, k);
 			if (pos >= 0)
 			{
-				if (flag[pos] == 1)
+				if (flag[pos] == 1 && core[pos] == 1)
 				{
-					this_num += BFS(i, j-1, k);
+					this_num += BFS(i, j - 1, k);
 				}
 			}
-			 pos = address(i, j+1, k);
+			pos = address(i, j + 1, k);
 			if (pos >= 0)
 			{
-				if (flag[pos] == 1)
+				if (flag[pos] == 1 && core[pos] == 1)
 				{
-					this_num += BFS(i, j +1, k);
+					this_num += BFS(i, j + 1, k);
 				}
 			}
-			 pos = address(i-1, j, k);
+			pos = address(i - 1, j, k);
 			if (pos >= 0)
 			{
-				if (flag[pos] == 1)
+				if (flag[pos] == 1 && core[pos] == 1)
 				{
-					this_num += BFS(i-1, j, k);
+					this_num += BFS(i - 1, j, k);
 				}
 			}
-			 pos = address(i+1, j, k);
+			pos = address(i + 1, j, k);
 			if (pos >= 0)
 			{
-				if (flag[pos] == 1)
+				if (flag[pos] == 1 && core[pos] == 1)
 				{
 					this_num += BFS(i + 1, j, k);
 				}
@@ -89,13 +89,13 @@ int BFS(int i, int j, int k)
 		}
 	}
 	return this_num;
-	
+
 }
 
 int main(void)
 {
 	scanf("%d%d%d%d", &m, &n, &l, &t);
-	
+
 	for (int i = 0; i < l; ++i)
 	{
 		int tmp;
@@ -127,7 +127,7 @@ int main(void)
 							core_num += temp;
 						}
 					}
-				}	
+				}
 			}
 		}
 	}
