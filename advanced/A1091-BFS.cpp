@@ -10,6 +10,14 @@ vector<int> core;
 vector<int> flag;//判断是否已经循环过
 int m, n, l, t;//m*n,l个矩阵，临界值为t
 
+
+struct Node
+{
+	int x;
+	int y;
+	int z;
+}node;
+
 int address(int a, int b, int c)
 {
 	if (a >= 0 && a < l&&b >= 0 && b < m&&c >= 0 && c < n)
@@ -22,9 +30,40 @@ int address(int a, int b, int c)
 	}
 }
 
-int BFS(int i, int j, int k)
+int BFS(Node tmpnode)
 {
-	
+	int i=tmpnode.x;
+	int j=tmpnode.y;
+	int k=tmpnode.z;
+
+	queue<Node> tmp_que;
+
+	int pos=address(i,j,k);
+	flag[pos]=0;
+	if(core[pos]==0)
+	{
+		return 0;
+	}
+
+	tmp_que.push_back(tmpnode);
+	while(tmp_que.size()!=0)
+	{
+		tmpnode=tmp_que.front();
+		tmp_que.pop();
+		i=tmpnode.x;
+		j=tmpnode.y;
+		k=tmpnode.z;
+
+		int pos=address(i,j,k);
+		if(pos>=0)
+		{
+			if(flag[pos]==1)
+			{
+				tmp_que.push()
+			}
+		}
+
+	}
 }
 
 int main(void)
@@ -54,9 +93,13 @@ int main(void)
 				int pos = address(i, j, k);
 				if (pos >= 0)
 				{
-					if (core[pos] == 1 && flag[pos] == 1)
+					if (flag[pos] == 1)//为1且位置未被搜索
 					{
-						int temp = BFS(i, j, k);
+						Node node1;
+						node1.x=i;
+						node1.y=j;
+						node1.z=k;
+						int temp = BFS(node1);
 						if (temp >= t)
 						{
 							core_num += temp;
