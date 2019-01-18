@@ -102,7 +102,6 @@ int main(void)
     {
         flag[i] = -1;
     }
-
         for (int i = 0; i < n; ++i)
         {
             Node[i].data = i;
@@ -131,11 +130,15 @@ int main(void)
 		}
 	}
 	invertnode(root);
+
 	levelorder(root);
 	printf("\n");
+
 	printnum = 0;
+
 	inorder(root);
 	printf("\n");
+
 	return 0;
 }
 
