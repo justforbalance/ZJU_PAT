@@ -46,7 +46,7 @@ void postorder(node* root)
 	postorder(root->rchild);
 	printf("%d", root->data);
 	++printnum;
-	if (printnum != n)
+	if (printnum < n)
 	{
 		printf(" ");
 	}
