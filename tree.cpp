@@ -122,6 +122,11 @@
         node* root=new node;
     }
 
+    二叉树的静态写法
+    struct node{
+        int data;
+        int lchild;
+        int rchild;
+    } Node[100];
 
-
-
+4 树的遍历
