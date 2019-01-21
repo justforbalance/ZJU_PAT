@@ -72,12 +72,12 @@ bool cmp(vector<int> a,vector<int> b)
 
 struct node
 {
-    int data;
+    //int data;
     int weight;
     vector<int> child;
 } Node[101];
 
-int DFS(int root)
+int DFS(int root,int sum)
 {
 
 }
@@ -85,5 +85,23 @@ int DFS(int root)
 int main(void)
 {
     scanf("%d%d%d", &n, &m, &s);
+    for (int i = 0; i < n; ++i)
+    {
+        scanf("%d", weight + i);
+    }
 
+    for (int i = 0; i < m;++i)
+    {
+        int tmpnode;
+        int sonnum;
+        scanf("%d %d",&tmpnode, &sonnum);
+        for (int j = 0; j < sonnum;++j)
+        {
+            int child;
+            scanf("%d", &child);
+            Node[i].child.push(child);
+        }
+    }
+
+    DFS(0,0);
 }
