@@ -25,49 +25,12 @@ using namespace std;
 
 int n, m, s;
 vector<int> res[101];
+int resnum=0;
 int weight[101];
 
-bool cmp(vector<int> a,vector<int> b)
+bool cmp(int a,int b)
 {
-    int size;
-    if(a.size()<b.size)
-    {
-        size = a.size();
-    }
-    
-    else
-    {
-        size = b.size();
-    }
-
-    int i;
-    for (i = 0; i < size;++i)
-    {
-        if(a[i]>b[i])
-        {
-            return true;
-            //break;
-        }
-        else
-        {
-            if(a[i]<b[i])
-            {
-                return false;
-                //break;
-            }
-        }
-    }
-    if(i==size-1)
-    {
-        if(a.size()>b.size())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    return a >= b;
 }
 
 struct node
@@ -77,9 +40,25 @@ struct node
     vector<int> child;
 } Node[101];
 
-int DFS(int root,int sum)
+void DFS(int root,int sum,vector<int> tmpweight)
 {
-
+    sum = sum + Node[root].weight;
+    tmpweight.push(Node[root].weight);
+    if(Node[root].child.size==0)
+    {
+        if(sum==s)
+        {
+            res[resnum] = tmpweight;
+            ++resnum;
+        }
+    }
+    else{
+        sort(Node[root].child, Node[root].child + Node[root].child.size(), cmp);
+        for(int i = 0; i < Node[root].child.size();++i)
+        {
+            DFS(Node[root].child[i], sum, tmpweigth);
+        }
+    }
 }
 
 int main(void)
@@ -103,5 +82,7 @@ int main(void)
         }
     }
 
-    DFS(0,0);
+    vector<int> tmpweight;
+    DFS(0,0,tmpweight);
+
 }
