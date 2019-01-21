@@ -129,4 +129,74 @@
         int rchild;
     } Node[100];
 
-4 树的遍历
+4 树的遍历//推荐使用的是树的静态写法
+    struct node
+    {
+        int data;
+        int child[maxn];
+    } Node[maxn];
+    或者
+    struct node
+    {
+        int data;
+        vector<int> child;
+    } //之后的代码都是在此基础上写的
+    假如不涉及数据域，可以写成
+        vector<int> child[maxn];
+    其中child[0]存放0号节点的子vector//本质上式图的邻接表写法
+
+    先序排序
+    void preorder(int root)
+    {
+        printf("%d\n", Node[root].data);
+        for (int i = 0; i < Node[root].child.size();++i)
+        {
+            preorder(Node[root].child[i]);
+        }
+    }
+    后序排序类似;
+    层序排序
+    void Layerorder(int root)
+    {
+        queue<int> q;
+        q.push(root);
+        while(!q.empty())
+        {
+            int front = q.front();
+            q.pop();
+            printf("%d", Node[front].data);
+            for (int i = 0; i < Node[front].child.size();++i)
+            {
+                q.push(Node[front].child[i]);
+            }
+        }
+    }
+
+    如果涉及到层号，根节点的层号为0或者1，以0为例
+    struct node
+    {
+        int layer;
+        int data;
+        vector<int> child;
+    } Node[maxn];
+
+    void Layerorder(int root);
+    {
+        queue<int> q;
+        Node[root].layer = 0;
+        q.push(root);
+        while(!q.empty())
+        {
+            int front = q.front;
+            printf("%d\n", Node[front].data);
+            for (int i = 0; i < Node[front].child.size();++i)
+            {
+                int child = Node[front].child[i];
+                Node[child].layer = Node[front].layer + 1;
+                q.push(child);
+            }
+        }
+    }
+
+    
+
