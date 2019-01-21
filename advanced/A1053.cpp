@@ -25,6 +25,7 @@ using namespace std;
 
 int n, m, s;
 vector<int> res[101];
+int weight[101];
 
 bool cmp(vector<int> a,vector<int> b)
 {
@@ -76,8 +77,13 @@ struct node
     vector<int> child;
 } Node[101];
 
+int DFS(int root)
+{
+
+}
 
 int main(void)
 {
-    
+    scanf("%d%d%d", &n, &m, &s);
+
 }
