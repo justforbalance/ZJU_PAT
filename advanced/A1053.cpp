@@ -25,64 +25,82 @@ using namespace std;
 
 int n, m, s;
 vector<int> res[101];
-int resnum=0;
+int resnum = 0;
 int weight[101];
-
-bool cmp(int a,int b)
-{
-    return a >= b;
-}
 
 struct node
 {
-    //int data;
-    int weight;
-    vector<int> child;
+	//int data;
+	int weight;
+	vector<int> child;
 } Node[101];
 
-void DFS(int root,int sum,vector<int> tmpweight)
+bool cmp(int a, int b)
 {
-    sum = sum + Node[root].weight;
-    tmpweight.push(Node[root].weight);
-    if(Node[root].child.size==0)
-    {
-        if(sum==s)
-        {
-            res[resnum] = tmpweight;
-            ++resnum;
-        }
-    }
-    else{
-        sort(Node[root].child, Node[root].child + Node[root].child.size(), cmp);
-        for(int i = 0; i < Node[root].child.size();++i)
-        {
-            DFS(Node[root].child[i], sum, tmpweigth);
-        }
-    }
+	return a >= b;
+}
+
+void DFS(int root, int sum, vector<int> tmpweight)
+{
+	sum = sum + Node[root].weight;
+	tmpweight.push_back(Node[root].weight);
+	if (Node[root].child.size() == 0)
+	{
+		if (sum == s)
+		{
+			res[resnum] = tmpweight;
+			++resnum;
+		}
+	}
+	else {
+		sort(Node[root].child.begin(), Node[root].child.end(), cmp);
+		for (int i = 0; i < Node[root].child.size(); ++i)
+		{
+			DFS(Node[root].child[i], sum, tmpweight);
+		}
+	}
+}
+
+void printt(vector<int> tmp)
+{
+	int size = tmp.size();
+	for (int i = 0; i < size; ++i)
+	{
+		printf("%d", tmp[i]);
+		if (i < size - 1)
+		{
+			printf(" ");
+		}
+	}
+	printf("\n");
 }
 
 int main(void)
 {
-    scanf("%d%d%d", &n, &m, &s);
-    for (int i = 0; i < n; ++i)
-    {
-        scanf("%d", weight + i);
-    }
+	scanf("%d%d%d", &n, &m, &s);
+	for (int i = 0; i < n; ++i)
+	{
+		scanf("%d", weight + i);
+	}
 
-    for (int i = 0; i < m;++i)
-    {
-        int tmpnode;
-        int sonnum;
-        scanf("%d %d",&tmpnode, &sonnum);
-        for (int j = 0; j < sonnum;++j)
-        {
-            int child;
-            scanf("%d", &child);
-            Node[i].child.push(child);
-        }
-    }
+	for (int i = 0; i < m; ++i)
+	{
+		int tmpnode;
+		int sonnum;
+		scanf("%d %d", &tmpnode, &sonnum);
+		for (int j = 0; j < sonnum; ++j)
+		{
+			int child;
+			scanf("%d", &child);
+			Node[i].child.push_back(child);
+		}
+	}
 
-    vector<int> tmpweight;
-    DFS(0,0,tmpweight);
-
+	vector<int> tmpweight;
+	DFS(0, 0, tmpweight);
+	for (int i = 0; i < resnum; ++i)
+	{
+		printt(res[i]);
+	}
+	return 0;
 }
