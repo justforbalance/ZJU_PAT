@@ -37,7 +37,7 @@ struct node
 
 bool cmp(int a, int b)
 {
-	return a >= b;
+	return weight[a]>weight[b];
 }
 
 void DFS(int root, int sum, vector<int> tmpweight)
@@ -80,7 +80,7 @@ int main(void)
 	scanf("%d%d%d", &n, &m, &s);
 	for (int i = 0; i < n; ++i)
 	{
-		scanf("%d", weight + i);
+		scanf("%d", &weight[i]);
 	}
 
 	for (int i = 0; i < m; ++i)
@@ -91,13 +91,19 @@ int main(void)
 		for (int j = 0; j < sonnum; ++j)
 		{
 			int child;
-			scanf("%d", &child);
-			Node[i].child.push_back(child);
+			scanf("%02d", &child);
+			Node[tmpnode].child.push_back(child);
 		}
+	}
+
+	for (int i = 0; i < n; ++i)
+	{
+		Node[i].weight = weight[i];
 	}
 
 	vector<int> tmpweight;
 	DFS(0, 0, tmpweight);
+	//cout << resnum << endl;
 	for (int i = 0; i < resnum; ++i)
 	{
 		printt(res[i]);
