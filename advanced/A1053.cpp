@@ -56,7 +56,13 @@ void DFS(int root, int sum, vector<int> tmpweight)
 		sort(Node[root].child.begin(), Node[root].child.end(), cmp);
 		for (int i = 0; i < Node[root].child.size(); ++i)
 		{
-			DFS(Node[root].child[i], sum, tmpweight);
+			vector<int> tmpweight1;
+			for (int j = 0; j < tmpweight.size(); ++j)
+			{
+				tmpweight1.push_back(tmpweight[j]);
+			}
+
+			DFS(Node[root].child[i], sum, tmpweight1);
 		}
 	}
 }
