@@ -19,8 +19,16 @@
     插入
     创建
     完全二叉树采用数组存储
+    二叉树指针实现
+    struct node
+    {
+        int data;
+        node* lchild;
+        node* rchild;
+    };
 
 3 二叉树的遍历
+
     先序遍历
     void perorder(node* root)
     {
@@ -197,6 +205,122 @@
             }
         }
     }
+5 树的搜索
+    DFS
+    BFS
+    
+6 BST 二叉搜索树(左侧的小于等于根节点，右侧的大于根节点)
+    void search(node* root,int x)
+    {
+        if(root==nuLL)
+        {
+            printf("search failed");
+            return;
+        };
+        if(x==root->data)
+        {
+            printf("%d\n", root->data);
+            else if(x<root->data)
+            {
+                search(root->lchild, x);
+            }
+            else
+            {
+                search(root->rchild, x);
+            }    
+        }
+    }
+
+    void insert(node* &root,int x)/root 会发生变化
+    {
+        if(root==NULL)
+        {
+            root = newnode(x);
+            return;
+        }
+        if(x==root->data)
+        {
+            return;
+        }
+        else if(x<root->data)
+        {
+            insert(root->lchild, x);
+        }
+        else
+        {
+            insert(root->rchild, x);
+        }   
+    }
+
+    node* Create(int d[],int n)
+    {
+        node* root = NULL;
+        for (int i = 0; i < n;++i)
+        {
+            insert(root,data[i]);
+        }
+        return root;
+    }
+
+    二叉树的删除 前驱 以及 后继
+    node* findmax(node* root)
+    {
+        while(root->rchild!=NULL)
+        {
+            root = root->rchild;
+        }
+        return root;
+    }
+
+    node* findMin(node* root)
+    {
+        while(root->lchild!=NULL)
+        {
+            root = root->lchild;
+        }
+        return root;
+    }
+
+    void deleteNode(Node* &root,int x)//root 会发生变化
+    {
+        if(root==NULL)
+            return;
+        if(root->data==x)
+        {
+            if(root->rchild==NULL&&root-<lchild==NULL)
+            {
+                root == NULL;
+            }
+            else if(root->lchild!=NULL)
+            {
+                node* pre = findMax(root->lchild);
+                root->data = pre->data;
+                deleteNode(root->lchild, pre->data);
+            }
+            else
+            {
+                node* next = findMin(root->rchild);
+                root->data = next->data;
+                deleteNode(root->rchild, next->data);
+            }  
+        }
+        else if(x<root->data)
+        {
+            deleteNode(root->lchild, x);
+        }
+        else
+        {
+            deleteNode(root->rchild, x);
+        }
+        
+    }
+    二叉查找树的中序遍历是有序的，本质上是二叉树
+
+7 AVL 平衡二叉树
+
+
+
+
 
     
 
