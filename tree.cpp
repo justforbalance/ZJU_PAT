@@ -422,6 +422,32 @@ AVL的建立
         return root;
     }
 
-
-
-
+并查集
+    int father[N];
+    初始化
+    for (int i = 0; i < n;++i)
+    {
+        father[i] = i;
+    }
+    查找
+    int findFather(int x)
+    {
+        while(x!=father[x])
+        {
+            x = father[x];
+        }
+        return x;
+    }
+    合并
+    原本两个孤立的集合，令其中一个的父节点指向另一个的父节点
+    void Union(int a,int b)
+    {
+        int faA = findFather(a);
+        int faB = findFather(b);
+        if(faA!=faB)
+        {
+            father[faA] = faB;
+        }
+    }
+    路径压缩
+    
