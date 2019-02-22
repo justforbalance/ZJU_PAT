@@ -450,4 +450,22 @@ AVL的建立
         }
     }
     路径压缩
-    
+    路径压缩是在查找的过程中进行压缩的
+    int findFather(int x)
+    {
+        int a = x;
+        while(x!=father[x])
+        {
+            x = father[x];
+        }
+        while(a!=father[a])
+        {
+            int z = a;
+            a = father[a];
+            father[z] = x;
+        }
+        return x;
+    }
+
+堆的定义
+
