@@ -468,4 +468,6 @@ AVL的建立
     }
 
 堆的定义
+const int maxn = 10010;
+
 
