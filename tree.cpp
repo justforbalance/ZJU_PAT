@@ -469,5 +469,103 @@ AVL的建立
 
 堆的定义
 const int maxn = 10010;
+int heap[maxn], n = 10;
+向下调整
+void downadjust(int low,int high)//从后往前枚举，依次与子节点比较
+{
+    int i = low, j = i * 2;
+    while(j<=high)
+    {
+        if(j+1<=high&&heap[j+1]>heap[j])
+        {
+            j = j + 1;
+        }
 
+        if(heap[j]>heap[i])
+        {
+            swap(heap[i], heap[j]);
+            i = j;
+            j = i * 2;
+        }
+        else 
+        {
+            break;
+        }
+    }
+}
+创建堆
+void creatheap()
+{
+    for (int i = n / 2; i >= 1;i--)
+    {
+        downadjust(i, n);
+    }
+}
+删除
+void deleteheap()
+{
+    heap[i] = heap[n];
+    --n;
+    downadjust(1, n);
+}
+向上调整
+void upadjust(int low,int high)
+{
+    int i = high, j = i / 2;
+    while(j>=low)
+    {
+        if(heap[j]<heap[i])
+        {
+            swap(heap[i], heap[j]);
+            i = j;
+            j = i / 2;
+        }
+        else
+        {
+            break;
+        }   
+    }
+}
+
+void insert(int x)
+{
+    ++n;
+    heap[n] = x;
+    upadjust(1, n);
+}
+
+堆排序
+void heapsort()
+{
+    creatheap();
+    for (int i = n; i > 1;--i)
+    {
+        swap(heap[i], heap[1]);
+        downadjust(1, i - 1);
+    }
+}
+
+哈夫曼树
+priority_queue<long long, vector<long long>, greater<long long>> q;
+int main()
+{
+    int n;
+    long long temp, x, y, ans = 0;
+    scanf("%d", &n);
+    for (int i = 0; i < n;++i)
+    {
+        scanf("%lld", &temp);
+        q.push(temp);
+    }
+    while(q.size()>1)
+    {
+        x = q.top();
+        q.pop();
+        y = q.top();
+        q.pop();
+        q.push(x + y);
+        ans += x + y;
+    }
+    ans为哈夫曼求和的结果
+}
 
