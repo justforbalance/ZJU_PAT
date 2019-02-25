@@ -217,6 +217,51 @@
 
 5.最小生成树
     prim算法
+    struct Node
+    {
+        int v, dis;
+    };
+    vector<Node> Adj[N];
+    int n;
+    int d[maxv];
+    bool vis[maxv] = {false};
+
+    void prim()
+    {
+        fill(d, d + maxv, INF);
+        d[0] = 0;
+        int ans = 0;//存放最小生成树的和
+        for (int i = 0; i < n;++i)
+        {
+            int u = -1, Min = INF;
+            fof(int j = 0; j < n;++j)
+            {
+                if(vis[j]=false&&d[j]<Min)
+                {
+                    u = j;
+                    Min = dis[j];
+                }
+            }
+            if(u==-1)
+            {
+                return;
+            }
+            vis[u] = true;
+            ans += d[u];
+            for (int j = 0; j < Adj[u].size();++j)
+            {
+                int v = Adj[u][j].v;
+                if(vis[v]==false&&Adj[u][j].dis<d[v])
+                {
+                    d[v]=Adj[u][j].dis
+                }
+            }
+        }
+        return ans;
+    }
+    krustral算法//使用并查集
+
     
+
 
     
