@@ -259,13 +259,51 @@
         }
         return ans;
     }
-    krustral算法//使用并查集
+    krustral算法 //使用并查集
 
-6.拓扑排序//涉及到入度以及出度
-    
+6.拓扑排序 //涉及到入度，使用队列
+    vector<int> Adj[maxv];
+    int indegree[maxv];
+    int n,m;
+    bool toposort()
+    {
+        int num = 0;
+        queue<int> q;
+        for (int i = 0; i < n;++i)
+        {
+            if(indegree[i]==0)
+            {
+                q.push(i);
+            }
+        }
+        while(!q.empty())
+        {
+            int u = q.front();
+            q.pop();
+            for (int i = 0; i < Adj[u].size();++i)
+            {
+                int v = Adj[u][i];
+                --indegree(v);
+                if(indegree[v]==0)
+                {
+                    q.push(v);
+                }
+            }
+            Adj[u].clear();//不乐意增加bool型变量数组来判读是否已经入队，否则的话最终结果一定是true，有环的是无法判断的
+            ++num;
+        }
 
-  
-    
+        if(num==n)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
 
 
     
