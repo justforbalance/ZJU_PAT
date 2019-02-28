@@ -112,5 +112,12 @@ stack//栈
 
 pair//
 {
+    pair<string, int> p;
+    p.first = "haha";
+    p.second = 7;
+}
+
+algorithm
+{
     
 }
