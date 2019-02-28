@@ -125,6 +125,6 @@ algorithm
     swap(x, y);
     int a[10];
     fill(a, a + 10, 0);
-    sort();
+    sort();//默认递增排序
     
 }
