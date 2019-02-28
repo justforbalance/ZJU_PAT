@@ -119,5 +119,12 @@ pair//
 
 algorithm
 {
+    max(x, y);
+    min(x, y);
+    abs(x) = fabs(x);
+    swap(x, y);
+    int a[10];
+    fill(a, a + 10, 0);
+    sort();
     
 }
