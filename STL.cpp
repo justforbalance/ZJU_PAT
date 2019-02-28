@@ -4,7 +4,7 @@
 #include<map>
 #include<queue>
 #include <stack>
-#include<pair>
+#include<utility>
 #include <algorithm>
 
 using namespace std
@@ -101,7 +101,16 @@ priority_queue//默认是大的数字在前面
     priority_queue<fruit> f;
 }
 
-stack
+stack//栈
+{
+    push();
+    top();
+    pop();
+    empty();
+    size();
+}
+
+pair//
 {
     
 }
