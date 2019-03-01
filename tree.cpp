@@ -353,7 +353,7 @@ int getbalancedFactor(node* root)
 
 void updateHeight(node* root)
 {
-    root->height = max(getHeight(root->rchild), getHeight(root->lchild));
+    root->height = max(getHeight(root->rchild), getHeight(root->lchild))+1;
 }
 查找 与二叉树类似
 
