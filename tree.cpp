@@ -210,6 +210,14 @@
     BFS
     
 6 BST 二叉搜索树(左侧的小于等于根节点，右侧的大于根节点)
+    node* newnode(int v)
+    {
+        node* root = new node;
+        root->data = v;
+        root->lchild = root->rchild = NULL;
+        return root;
+    }
+
     void search(node* root,int x)
     {
         if(root==nuLL)
@@ -281,7 +289,7 @@
         return root;
     }
 
-    void deleteNode(Node* &root,int x)//root 会发生变化
+    void deleteNode(Node* &root,int x)//root 会发生变化，使用前驱或者后继来删除代替
     {
         if(root==NULL)
             return;
