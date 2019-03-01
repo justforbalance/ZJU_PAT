@@ -231,7 +231,7 @@
         }
     }
 
-    void insert(node* &root,int x)/root 会发生变化
+    void insert(node* &root,int x)//root 会发生变化
     {
         if(root==NULL)
         {
