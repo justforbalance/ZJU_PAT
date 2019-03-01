@@ -479,7 +479,7 @@ AVL的建立
 const int maxn = 10010;
 int heap[maxn], n = 10;
 向下调整
-void downadjust(int low,int high)//从后往前枚举，依次与子节点比较
+void downadjust(int low,int high)//从后往前枚举，依次与子节点比较,堆是从1开始的
 {
     int i = low, j = i * 2;
     while(j<=high)

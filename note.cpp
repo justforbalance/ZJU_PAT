@@ -28,4 +28,4 @@ int gcd(int a,int b)
             n = 0;
         }
     };
-4.
+

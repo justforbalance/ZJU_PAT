@@ -46,7 +46,7 @@
             }
         }
     BFS版本
-        vector<int> Adj[maxv];
+        vector<int> Adj[maxv];//只要入队就设置已经访问
         int n;
         bool inq[maxv] = {false};
 
