@@ -411,7 +411,7 @@ void insert(node* &root,int v)
             {
                 L(root);
             }
-            else if(getbalancedFactor(root->rchild)==1)
+            else if(getbalancedFactor(root->rchild)==1)//RL
             {
                 R(root->rchild);
                 L(root);
