@@ -69,7 +69,7 @@
         q.push(root);
         while(!q.empty())
         {
-            node* now=q.front;
+            node* now=q.front();
             q.pop();
             printf("%d\n",now->data);
             if(now->lchild!=NULL)
